@@ -1,39 +1,80 @@
 # Task Manager
 
-A simple Task Manager web app built with Express, EJS and MongoDB.
+A simple and intuitive Task Manager web application built with Node.js, Express, EJS, and MongoDB. This application allows users to efficiently manage their tasks with full CRUD (Create, Read, Update, Delete) functionality.
 
 ## Features
-- Create, list, view, update and delete tasks
-- Task fields: task, assign_to, dead_line, status (default: `incomplete`)
-- Status badges/colors for `incomplete`, `in-progress`, `complete`
+
+- ✅ **Create Tasks** - Add new tasks with assignee and deadline
+- 📋 **List Tasks** - View all tasks in an organized manner
+- 👁️ **View Task Details** - See complete information about individual tasks
+- ✏️ **Update Tasks** - Edit task details and update status
+- 🗑️ **Delete Tasks** - Remove completed or unwanted tasks
+- 🎨 **Status Tracking** - Visual badges for task status:
+  - `incomplete` (default)
+  - `in-progress`
+  - `complete`
+
+## Task Fields
+
+Each task includes the following information:
+- **Task Name** - Description of the task
+- **Assigned To** - Person responsible for the task
+- **Deadline** - Due date for completion
+- **Status** - Current state of the task (incomplete/in-progress/complete)
 
 ## Prerequisites
-- Node.js (v14+ recommended)
-- npm (comes with Node)
-- MongoDB running locally (default connection URI used: `mongodb://127.0.0.1:27017/taskmanager`)
 
-## Install
-From the project root run:
+Before running this application, make sure you have the following installed:
 
-```bash
-npm install
-```
+- [Node.js](https://nodejs.org/) (v14 or higher recommended)
+- [npm](https://www.npmjs.com/) (comes with Node.js)
+- [MongoDB](https://www.mongodb.com/) running locally
 
-## Run
-Start MongoDB (if not running). Then run the server:
+## Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/SarthakAhir/Task_Manager.git
+   cd Task_Manager
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start MongoDB**
+   
+   Make sure MongoDB is running on your local machine. The application uses the default connection URI:
+   ```
+   mongodb://127.0.0.1:27017/taskmanager
+   ```
+
+## Usage
+
+### Running in Production Mode
 
 ```bash
 node app.js
 ```
 
-For development (auto-restart on changes) install `nodemon` and run:
+### Running in Development Mode
 
-```bash
-npm install --save-dev nodemon
-npx nodemon app.js
-```
+For development with auto-restart on file changes:
 
-You can also add scripts to `package.json`:
+1. Install nodemon as a dev dependency:
+   ```bash
+   npm install --save-dev nodemon
+   ```
+
+2. Run the application:
+   ```bash
+   npx nodemon app.js
+   ```
+
+### Using NPM Scripts (Optional)
+
+You can add these scripts to your `package.json`:
 
 ```json
 "scripts": {
@@ -42,36 +83,94 @@ You can also add scripts to `package.json`:
 }
 ```
 
-and run with `npm run start` or `npm run dev`.
+Then run with:
+```bash
+npm run start    # Production mode
+npm run dev      # Development mode
+```
 
-## Endpoints
-- `GET /tasks` — list all tasks
-- `GET /tasks/new` — show form to create a new task
-- `POST /tasks` — create a task
-- `GET /tasks/:id` — show a single task
-- `PUT /tasks/:id` — update a task (method-override is used)
-- `DELETE /tasks/:id` — delete a task
+## API Routes
 
-## Database
-The app uses Mongoose and expects a MongoDB server at `mongodb://127.0.0.1:27017/taskmanager` by default. If you need a different URI, update `app.js`.
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | `/tasks` | List all tasks |
+| GET | `/tasks/new` | Show form to create a new task |
+| POST | `/tasks` | Create a new task |
+| GET | `/tasks/:id` | Show details of a single task |
+| PUT | `/tasks/:id` | Update an existing task |
+| DELETE | `/tasks/:id` | Delete a task |
 
-## Notes & Troubleshooting
-- If you see many `LF will be replaced by CRLF` warnings when running `git add`, ensure `node_modules/` is in `.gitignore` (this project already adds it) and set `git config --global core.autocrlf true` on Windows to avoid repeated warnings.
-- If the update form doesn't change status, make sure the `<select>` element has `name="task[status]"` so the server receives the value. The project already includes this fix.
-- To seed sample data, you can create a small script that uses the `Task` model to insert documents.
+*Note: PUT and DELETE methods use the `method-override` middleware for form compatibility.*
 
-## Contributing
-- Please do not commit `node_modules`.
-- Keep line endings consistent — consider adding a `.gitattributes` file to normalize endings across platforms.
+## Database Configuration
+
+The application uses Mongoose to connect to MongoDB. The default connection URI is:
+
+```javascript
+mongodb://127.0.0.1:27017/taskmanager
+```
+
+If you need to use a different MongoDB URI, update the connection string in `app.js`.
+
+## Troubleshooting
+
+### Git Line Ending Warnings
+
+If you see `LF will be replaced by CRLF` warnings on Windows:
+
+1. Ensure `node_modules/` is in `.gitignore` (already included)
+2. Run:
+   ```bash
+   git config --global core.autocrlf true
+   ```
+
+### Status Not Updating
+
+If the update form doesn't change the task status, verify that the `<select>` element in your form has:
+```html
+name="task[status]"
+```
+This ensures the server receives the status value correctly.
+
+### Adding Sample Data
+
+To populate your database with sample tasks, you can create a seed script using the `Task` model to insert documents.
+
+## Project Structure
+
+```
+Task_Manager/
+├── app.js              # Main application file
+├── models/             # Mongoose models
+├── views/              # EJS templates
+├── public/             # Static files (CSS, JS, images)
+├── package.json        # Project dependencies
+└── README.md          # Project documentation
+```
+
+## Best Practices
+
+- ⚠️ **Do not commit `node_modules/`** - It's already in `.gitignore`
+- 📝 Keep line endings consistent across platforms
+- 🔧 Consider adding a `.gitattributes` file to normalize line endings
+
+## Technologies Used
+
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB, Mongoose
+- **Template Engine:** EJS
+- **Middleware:** method-override (for PUT/DELETE support)
 
 ## License
+
 ISC
 
----
+## Contributing
 
-If you want I can also:
-- Add `start`/`dev` scripts to `package.json` and commit them,
-- Create a small `seed.js` to populate example tasks,
-- Add `.gitattributes` and normalize line endings.
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-Tell me which of those you want me to do next.
+## Contact
+
+**Sarthak Ahir**
+- GitHub: [@SarthakAhir](https://github.com/SarthakAhir)
+
