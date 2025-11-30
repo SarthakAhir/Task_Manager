@@ -1,0 +1,141 @@
+body{
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+   display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #FFFCFB !important;
+}
+
+.container{
+    flex: 1;
+}
+
+/* Navbar */
+
+.navbar{
+    height: 5rem;
+    background-color: #F9F8F6;
+}
+
+.fa-list-check{
+    color: #0ABAB5;
+    font-size: 2rem;
+}
+
+.nav-link{
+    font-size: 1.1rem !important;
+    color: #161D6F !important;
+}
+
+/* index */
+.box{
+    border: 1px solid #C4E1E6;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 40px;
+
+   
+}
+.head-box{
+   
+    height: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+
+.task-com{
+    width: 110px;
+    height: 35px;
+    background-color: #ADEED9;
+    color: #000000;
+    font-size: 19px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin-top: 10px;
+    position: relative;
+    left: 10px;
+}
+
+.box a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.task-box{
+    min-height: 70px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    padding: 20px;
+    border: 1px solid #0ABAB5;
+    border-radius: 15px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.task-box:hover{
+  transform: translateX(10px);
+    cursor: pointer;
+}
+.head-deadline{
+    margin-right: 20px;
+}
+.head-assign{
+    margin-left: 50px;
+}
+
+.task-deadline{
+    color: red;
+}
+
+.task-imcomplete{
+    background-color: #fff3e0;
+    color: #e65100;
+    width: 150px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* show */
+.delete{
+    width: 73%;
+    display: flex;
+    justify-content: end;
+    margin-top: 30px;
+}
+.delete button{
+    width: 80px;
+    height: 30px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* new  */
+.add-btn{
+    width: 80px;
+    height: 30px;
+    background-color: #85E6C5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.update-status button{
+     background-color: #33BBC5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

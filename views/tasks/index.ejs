@@ -1,0 +1,23 @@
+<% layout("/layouts/boilerplate") -%>
+
+<div class="box row mt-5">
+    <div class="head-box">
+        <span class="task-com head-status">Status</span>
+        <span class="task-com head-task">Task</span>
+        <span class="task-com head-assign">Assign To</span>
+        <span class="task-com head-deadline">Deadline</span>
+    </div>
+
+  <div class="col">
+   <% for(let task of tasks){ %>
+    <a href="/tasks/<%= task.id %>">
+        <div class="task-box col-10 offset-1 mt-3 mb-3">
+            <div class="task-<%= task.status %>"><%= task.status %></div>
+            <div class="task-task"><%= task.task %></div>
+            <div class="task-assign"><%= task.assign_to %></div>
+            <div class="task-deadline"><%= task.dead_line.toString().split(" ").slice(1,4).join(" ") %></div>
+        </div>
+        </a>
+   <% } %>
+    </div>
+</div>

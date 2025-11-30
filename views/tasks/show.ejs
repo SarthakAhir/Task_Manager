@@ -1,0 +1,56 @@
+<% layout("/layouts/boilerplate") -%>
+
+
+<div class="row mt-5 justify-content-center">
+
+  <div class="card col-6 show-card">
+    
+      <div class="card-body">
+        <h5 class="card-title"><%= task.task %></h5>
+        <p class="card-text"><%= task.discription %></p>
+        <p class="card-text">
+          <strong>Assign To:</strong> <%= task.assign_to %>
+        </p>
+        <p class="card-text">
+          <strong>Assign At:</strong> <%= task.assign_at.toString().split(" ").slice(1,4).join(" ") %>
+        </p>
+        <p class="card-text">
+          <strong>Dead Line:</strong> <%= task.dead_line.toDateString() %>
+        </p>
+        <!-- <p class="card-text"><strong>Status:</strong> <%= task.status %></p> -->
+
+        <form id="update-status-form" method="post" action="/tasks/<%= task._id %>?_method=PUT">
+          <div class="col-6 mb-3">
+            <label for="status" class="form-label"><strong>Status:</strong></label>
+            <select id="status" name="task[status]" class="form-select">
+              <option value="incomplete" <%= task.status === 'incomplete' ? 'selected' : '' %>>Incomplete</option>
+              <option value="in-progress" <%= task.status === 'in-progress' ? 'selected' : '' %>>In Progress</option>
+              <option value="complete" <%= task.status === 'complete' ? 'selected' : '' %>>Complete</option>
+            </select>
+          </div>
+          <div class="update-status"><button type="submit">Update Status</button></div>
+        </form>
+      </div>
+  </div>
+
+</div>
+<div class="delete">
+  <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST">
+    <button type="submit">Delete</button>
+  </form>
+</div>
+
+<script>
+  // extract and log selected status before the form submits
+  (function(){
+    const form = document.getElementById('update-status-form');
+    if(!form) return;
+    form.addEventListener('submit', function(e){
+      const sel = form.querySelector('select[name="task[status]"]');
+      if(sel){
+        console.log('Submitting status value:', sel.value);
+      }
+      // allow normal submit so server receives the value
+    });
+  })();
+</script>
